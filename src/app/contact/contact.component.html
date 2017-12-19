@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="col-md-12">
+    <h1>Contact List</h1>
+      <table class="table table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">Name</th>
+		<th class="text-center">Phone</th>
+		<th class="text-center">Address</th>
+        <th class="text-center">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contacts">
+        <td>{{ contact.id }}</td>
+        <td>{{ contact.name }}</td>
+        <td>{{ contact.phone }}</td>
+		<td>{{ contact.address }}</td>
+        <td>
+          <button class="btn btn-info"
+                        (click)="showEditContactForm(contact)">
+                       <i class="fa fa-edit"></i>
+              </button>
+          <button class="btn btn-danger"
+                       (click)="removeContact(contact)" confirm="Are you sure ?">
+                       <i class="fa fa-minus"></i>
+            </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn "
+               (click)="showAddContactForm()"><i class="fa fa-plus"></i></button>
+  <br />
+  <br />
+
+  <form *ngIf="contactForm">
+    <h2>Add New Contact</h2>
+    							 
+	<div class="form-group">
+              <label class="control-label">ID :</label>
+              <input class="form-control" type="text" name="id" [(ngModel)]="newContact.id" required />          
+    </div>
+	<div class="form-group">
+              <label class="control-label">Name :</label>
+              <input class="form-control" type="text" name="name" [(ngModel)]="newContact.name" required />      
+    </div>
+	<div class="form-group">
+              <label class="control-label">Phone :</label>
+              <input class="form-control" type="text" name="phone" [(ngModel)]="newContact.phone" required />   
+    </div>
+	<div class="form-group">
+              <label class="control-label">Address :</label>
+              <input class="form-control" type="text" name="address" [(ngModel)]="newContact.address" required />   
+    </div>
+    <p>
+      <button type="button"
+                   class="btn btn-success"
+                   (click)="saveContact(newContact)">Submit</button>
+      <button type="button"
+                   class="btn btn-danger"
+                   (click)="cancelNewContact()">Cancel</button>
+    </p>
+   </form>
+
+    <form *ngIf="editContactForm">
+	
+    <h2>Edit Contact Details</h2>
+	<div class="form-group">
+              <label class="control-label">ID :</label>
+              <input class="form-control" type="text" name="id" [(ngModel)]="editedContact.id" />          
+    </div>
+	<div class="form-group">
+              <label class="control-label">Name :</label>
+              <input class="form-control" type="text" name="name" [(ngModel)]="editedContact.name" />      
+    </div>
+	<div class="form-group">
+              <label class="control-label">Phone :</label>
+              <input class="form-control" type="text" name="phone" [(ngModel)]="editedContact.phone" />   
+    </div>
+	<div class="form-group">
+              <label class="control-label">Adress :</label>
+              <input class="form-control" type="text" name="address" [(ngModel)]="editedContact.address" />   
+    </div>
+	
+    
+    <p>
+      <button type="button"
+                   class="btn btn-success"
+                   (click)="updateContact(editedContact)">Submit</button>
+      <button type="button"
+                   class="btn btn-danger"
+                   (click)="cancelEdits()">Cancel</button>
+    </p>
+   </form>
+  </div>
+</div>
